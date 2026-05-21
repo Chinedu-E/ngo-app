@@ -1,15 +1,25 @@
-import Hero from "@/components/landing/hero";
-import Services from "@/components/landing/services";
-import Testimonials from "@/components/landing/testimonials";
-import Contact from "@/components/landing/contact";
+import HomeHero from "@/components/home/hero";
+import {
+  WhoWeAre,
+  MissionVision,
+  WhatWeDo,
+  CommunityImpact,
+  HowItWorks,
+  Testimonials,
+  NewsletterSection,
+} from "@/components/home/content-sections";
 
 export default function Home() {
   return (
-    <div className="">
-      <Hero />
-      <Services />
+    <>
+      <HomeHero />
+      <WhoWeAre />
+      <MissionVision />
+      <WhatWeDo />
+      <CommunityImpact />
+      <HowItWorks />
       <Testimonials />
-      <Contact />
-    </div>
+      <NewsletterSection />
+    </>
   );
 }

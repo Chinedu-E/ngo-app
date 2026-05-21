@@ -1,74 +1,79 @@
-// components/Footer.tsx
-import Link from 'next/link';
-import { Globe2, Mail } from 'lucide-react';
+import Link from "next/link";
+import { Mail } from "lucide-react";
+import { NAV_LINKS, SITE, SOCIAL_LINKS } from "@/lib/site";
+import NewsletterForm from "@/components/forms/newsletter-form";
+import Logo from "@/components/layout/logo";
 
-const Footer = () => {
+export default function Footer() {
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="bg-[#050810] border-t border-white/5 pt-20 pb-10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-          
-          {/* Brand & Mission */}
-          <div className="md:col-span-1 space-y-6">
-            <div className="flex items-center gap-2">
-              <div className="bg-emerald-500/10 p-2 rounded-lg">
-                <Globe2 className="text-emerald-500 w-5 h-5" />
-              </div>
-              <span className="text-lg font-bold text-white tracking-tight">
-                Pathways<span className="text-emerald-500">NGO</span>
-              </span>
+    <footer className="bg-forest text-white border-t border-white/10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+          <div className="space-y-4">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <Logo size="lg" />
+              <span className="font-serif text-lg sm:text-xl font-semibold">{SITE.name}</span>
             </div>
-            <p className="text-slate-400 text-sm leading-relaxed">
-              Empowering newcomers through professional excellence and community integration. A non-profit dedicated to your Canadian success.
+            <p className="text-sm text-white/75 leading-relaxed max-w-xs">
+              {SITE.description}
             </p>
+            <a
+              href={`mailto:${SITE.supportEmail}`}
+              className="inline-flex items-center gap-2 text-sm text-sage hover:text-white transition-colors"
+            >
+              <Mail className="h-4 w-4" />
+              {SITE.supportEmail}
+            </a>
           </div>
 
-          {/* Quick Links */}
           <div>
-            <h4 className="text-white font-bold mb-6">Organization</h4>
-            <ul className="space-y-4 text-sm text-slate-400">
-              <li><Link href="#home" className="hover:text-emerald-400 transition-colors">Our Mission</Link></li>
-              <li><Link href="#services" className="hover:text-emerald-400 transition-colors">Settlement Services</Link></li>
-              <li><Link href="#testimonials" className="hover:text-emerald-400 transition-colors">Success Stories</Link></li>
-              <li><Link href="/admin" className="hover:text-emerald-400 transition-colors">Partner Portal</Link></li>
+            <h4 className="text-sm font-bold uppercase tracking-widest text-sage mb-4">Navigate</h4>
+            <ul className="space-y-3">
+              {NAV_LINKS.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="text-sm text-white/75 hover:text-white transition-colors">
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Support */}
           <div>
-            <h4 className="text-white font-bold mb-6">Support</h4>
-            <ul className="space-y-4 text-sm text-slate-400">
-              <li><Link href="#contact" className="hover:text-emerald-400 transition-colors">Contact Us</Link></li>
-              <li><button className="hover:text-emerald-400 transition-colors text-left">Privacy Policy</button></li>
-              <li><button className="hover:text-emerald-400 transition-colors text-left">Terms of Service</button></li>
-              <li><button className="hover:text-emerald-400 transition-colors text-left">Help Center</button></li>
+            <h4 className="text-sm font-bold uppercase tracking-widest text-sage mb-4">Connect</h4>
+            <ul className="space-y-3">
+              {SOCIAL_LINKS.map((link) => (
+                <li key={link.name}>
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-white/75 hover:text-white transition-colors"
+                  >
+                    {link.name}
+                  </a>
+                </li>
+              ))}
             </ul>
+            <p className="mt-6 text-xs text-white/50">Office location — coming soon</p>
           </div>
 
-          {/* Newsletter / CTA */}
-          <div className="space-y-6">
-            <h4 className="text-white font-bold">Stay Updated</h4>
-            <p className="text-sm text-slate-400">Get the latest settlement resources in your inbox.</p>
-            <div className="flex gap-2">
-              <input 
-                type="email" 
-                placeholder="Email address"
-                className="bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-emerald-500 w-full"
-              />
-              <button className="p-2 bg-emerald-500 rounded-lg text-[#0A0F1C] hover:bg-emerald-400 transition-colors">
-                <Mail className="w-4 h-4" />
-              </button>
-            </div>
+          <div>
+            <h4 className="text-sm font-bold uppercase tracking-widest text-sage mb-4">Newsletter</h4>
+            <p className="text-sm text-white/75 mb-4">
+              Receive updates about programs, workshops, events, and community opportunities.
+            </p>
+            <NewsletterForm variant="footer" />
           </div>
         </div>
 
-        <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
-          <p>© 2026 Pathways Settlement Services. All rights reserved.</p>
-          <p>Designed with Care for Newcomers.</p>
+        <div className="border-t border-white/10 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-white/50">
+          <p>© {year} {SITE.name}. All rights reserved.</p>
+          <p>Building inclusive communities, together.</p>
         </div>
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}

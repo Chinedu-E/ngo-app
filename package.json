@@ -6,15 +6,20 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "email:dev": "email dev --dir emails"
   },
   "dependencies": {
+    "@react-email/components": "^1.0.12",
     "lucide-react": "^1.14.0",
     "next": "16.2.6",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "react-email": "^6.3.0",
+    "resend": "^6.12.3"
   },
   "devDependencies": {
+    "@react-email/ui": "^6.3.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
