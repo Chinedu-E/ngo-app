@@ -2,6 +2,8 @@ export const SITE = {
   name: "ThriveParth",
   tagline: "Community, opportunity, and direction.",
   supportEmail: "support@thriveparth.org",
+  companyNumber: "+1 (647) 228-9454",
+  missionStatementPath: "/Thriveparth Foundational Overview 2.pdf",
   description:
     "ThriveParth supports newcomers, youth, and individuals through mentorship, guidance, community programs, and meaningful opportunities.",
   ogImage: "/thriveparth.jpg",

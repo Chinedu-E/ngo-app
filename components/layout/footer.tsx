@@ -26,6 +26,10 @@ export default function Footer() {
               <Mail className="h-4 w-4" />
               {SITE.supportEmail}
             </a>
+            <div className="pt-4 border-t border-white/10">
+              <p className="text-xs font-bold uppercase tracking-widest text-sage mb-1">Corporation No.</p>
+              <p className="text-sm font-semibold text-white">{SITE.companyNumber}</p>
+            </div>
           </div>
 
           <div>
@@ -38,6 +42,16 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <a
+                  href={encodeURI(SITE.missionStatementPath)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-white/75 hover:text-white transition-colors"
+                >
+                  Mission Statement
+                </a>
+              </li>
             </ul>
           </div>
 

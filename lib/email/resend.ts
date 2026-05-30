@@ -40,7 +40,7 @@ export async function sendTeamNotification({
 
   const { error } = await resend.emails.send({
     from,
-    to: ["chudi4u@gmail.com"],
+    to: ["clarkesmai@icloud.com"],
     replyTo: replyTo ? [replyTo] : undefined,
     subject,
     react: template,
