@@ -1,6 +1,5 @@
 import type { ReactElement } from "react";
 import { Resend } from "resend";
-import { SITE } from "@/lib/site";
 
 export const EMAIL_SUBJECTS = {
   support: "Support",
@@ -8,6 +7,8 @@ export const EMAIL_SUBJECTS = {
   contact: "Contact",
   newsletter: "Newsletter",
 } as const;
+
+const DEFAULT_TEAM_INBOX = "admin@thriveparth.org";
 
 type SendTeamNotificationOptions = {
   subject: string;
@@ -25,6 +26,10 @@ function getFromEmail(): string | null {
   return process.env.RESEND_FROM_EMAIL ?? null;
 }
 
+function getTeamInbox(): string {
+  return process.env.TEAM_INBOX_EMAIL ?? DEFAULT_TEAM_INBOX;
+}
+
 export async function sendTeamNotification({
   subject,
   template,
@@ -32,6 +37,7 @@ export async function sendTeamNotification({
 }: SendTeamNotificationOptions): Promise<{ ok: true } | { ok: false; error: string }> {
   const resend = getResendClient();
   const from = getFromEmail();
+  const to = getTeamInbox();
 
   if (!resend || !from) {
     console.error("[email] Missing RESEND_API_KEY or RESEND_FROM_EMAIL");
@@ -40,7 +46,7 @@ export async function sendTeamNotification({
 
   const { error } = await resend.emails.send({
     from,
-    to: ["clarkesmai@icloud.com"],
+    to: [to],
     replyTo: replyTo ? [replyTo] : undefined,
     subject,
     react: template,
