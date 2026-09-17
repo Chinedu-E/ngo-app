@@ -38,10 +38,13 @@ export default function ContactPage() {
             </div>
 
             <div>
-              <h3 className="text-sm font-bold uppercase tracking-widest text-sage mb-3">
-                Corporation No.
-              </h3>
-              <p className="text-forest font-semibold">{SITE.companyNumber}</p>
+              <h3 className="text-sm font-bold uppercase tracking-widest text-sage mb-3">Phone</h3>
+              <a
+                href={`tel:${SITE.phone.replace(/\s/g, "")}`}
+                className="text-forest font-semibold hover:text-sage transition-colors"
+              >
+                {SITE.phone}
+              </a>
             </div>
 
             <div>

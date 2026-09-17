@@ -2,7 +2,7 @@ export const SITE = {
   name: "ThriveParth",
   tagline: "Community, opportunity, and direction.",
   supportEmail: "support@thriveparth.org",
-  companyNumber: "+1 (647) 228-9454",
+  phone: "+1 (647) 228-9454",
   address: {
     line1: "10 Four Seasons Pl Suite 1000",
     line2: "Etobicoke, ON M9B 6H7",
