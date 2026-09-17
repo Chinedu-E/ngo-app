@@ -3,6 +3,10 @@ export const SITE = {
   tagline: "Community, opportunity, and direction.",
   supportEmail: "support@thriveparth.org",
   companyNumber: "+1 (647) 228-9454",
+  address: {
+    line1: "10 Four Seasons Pl Suite 1000",
+    line2: "Etobicoke, ON M9B 6H7",
+  },
   missionStatementPath: "/Thriveparth Foundational Overview 2.pdf",
   description:
     "ThriveParth supports newcomers, youth, and individuals through mentorship, guidance, community programs, and meaningful opportunities.",
@@ -28,9 +32,10 @@ export const NAV_LINKS = [
 ] as const;
 
 export const SOCIAL_LINKS = [
-  { name: "Instagram", href: "https://instagram.com" },
-  { name: "LinkedIn", href: "https://linkedin.com" },
-  { name: "Facebook", href: "https://facebook.com" },
+  {
+    name: "Instagram",
+    href: "https://www.instagram.com/thriveparthcommunitynetwork",
+  },
 ] as const;
 
 export const SUPPORT_CATEGORIES = [

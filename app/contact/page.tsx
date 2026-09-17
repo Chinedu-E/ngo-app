@@ -38,6 +38,22 @@ export default function ContactPage() {
             </div>
 
             <div>
+              <h3 className="text-sm font-bold uppercase tracking-widest text-sage mb-3">
+                Corporation No.
+              </h3>
+              <p className="text-forest font-semibold">{SITE.companyNumber}</p>
+            </div>
+
+            <div>
+              <h3 className="text-sm font-bold uppercase tracking-widest text-sage mb-3">Office</h3>
+              <address className="text-sm text-muted not-italic leading-relaxed">
+                {SITE.address.line1}
+                <br />
+                {SITE.address.line2}
+              </address>
+            </div>
+
+            <div>
               <h3 className="text-sm font-bold uppercase tracking-widest text-sage mb-3">Social</h3>
               <ul className="space-y-2">
                 {SOCIAL_LINKS.map((link) => (
@@ -54,8 +70,6 @@ export default function ContactPage() {
                 ))}
               </ul>
             </div>
-
-            <p className="text-xs text-muted">Office location — coming soon</p>
           </aside>
 
           <div className="lg:col-span-2">

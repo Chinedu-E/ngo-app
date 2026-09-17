@@ -26,10 +26,6 @@ export default function Footer() {
               <Mail className="h-4 w-4" />
               {SITE.supportEmail}
             </a>
-            <div className="pt-4 border-t border-white/10">
-              <p className="text-xs font-bold uppercase tracking-widest text-sage mb-1">Corporation No.</p>
-              <p className="text-sm font-semibold text-white">{SITE.companyNumber}</p>
-            </div>
           </div>
 
           <div>
@@ -71,7 +67,11 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-            <p className="mt-6 text-xs text-white/50">Office location — coming soon</p>
+            <address className="mt-6 text-xs text-white/50 not-italic leading-relaxed">
+              {SITE.address.line1}
+              <br />
+              {SITE.address.line2}
+            </address>
           </div>
 
           <div>
