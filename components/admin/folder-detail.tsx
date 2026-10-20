@@ -292,7 +292,7 @@ export function FolderDetail({ folder }: { folder: GalleryFolder }) {
                   <img
                     src={photo.url}
                     alt={photo.caption || folder.title}
-                    className="absolute inset-0 w-full h-full object-cover"
+                    className="absolute inset-0 w-full h-full object-cover object-top"
                   />
                   {isCover && (
                     <span className="absolute top-3 left-3 inline-flex items-center gap-1 rounded-full bg-forest text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1">

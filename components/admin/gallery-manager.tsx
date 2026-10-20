@@ -114,7 +114,7 @@ export function GalleryManager({ folders }: { folders: GalleryFolder[] }) {
                     <img
                       src={cover.url}
                       alt={folder.title}
-                      className="absolute inset-0 w-full h-full object-cover"
+                      className="absolute inset-0 w-full h-full object-cover object-top"
                     />
                   ) : (
                     <div className="absolute inset-0 flex items-center justify-center text-muted text-sm">
