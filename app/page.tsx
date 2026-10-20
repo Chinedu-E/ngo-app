@@ -8,8 +8,14 @@ import {
   Testimonials,
   NewsletterSection,
 } from "@/components/home/content-sections";
+import GallerySection from "@/components/home/gallery-section";
+import { getPublicFolders } from "@/lib/gallery/store";
 
-export default function Home() {
+export const dynamic = "force-dynamic";
+
+export default async function Home() {
+  const galleryFolders = await getPublicFolders();
+
   return (
     <>
       <HomeHero />
@@ -17,6 +23,7 @@ export default function Home() {
       <MissionVision />
       <WhatWeDo />
       <CommunityImpact />
+      {galleryFolders.length > 0 && <GallerySection folders={galleryFolders} />}
       <HowItWorks />
       <Testimonials />
       <NewsletterSection />
