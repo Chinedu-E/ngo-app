@@ -1,16 +1,19 @@
 import type { Metadata } from "next";
 import { PageHero, Section, SectionHeader } from "@/components/ui/section";
-import { EVENTS } from "@/lib/site";
 import EventCard from "@/components/events/event-card";
+import { getEventsWithStatus } from "@/lib/events/store";
 
 export const metadata: Metadata = {
   title: "Events",
   description: "Workshops, networking sessions, and community events hosted by ThriveParth.",
 };
 
-export default function EventsPage() {
-  const upcoming = EVENTS.filter((e) => e.upcoming);
-  const past = EVENTS.filter((e) => !e.upcoming);
+export const dynamic = "force-dynamic";
+
+export default async function EventsPage() {
+  const events = await getEventsWithStatus();
+  const upcoming = events.filter((e) => e.upcoming);
+  const past = [...events.filter((e) => !e.upcoming)].reverse();
 
   return (
     <>
@@ -22,11 +25,17 @@ export default function EventsPage() {
 
       <Section variant="white">
         <SectionHeader eyebrow="Upcoming Events" title="Join us at our next gathering" />
-        <div className="grid md:grid-cols-2 gap-8">
-          {upcoming.map((event) => (
-            <EventCard key={event.id} event={event} />
-          ))}
-        </div>
+        {upcoming.length === 0 ? (
+          <p className="text-muted text-center py-8">
+            No upcoming events right now. Check back soon or explore our past highlights below.
+          </p>
+        ) : (
+          <div className="grid md:grid-cols-2 gap-8">
+            {upcoming.map((event) => (
+              <EventCard key={event.id} event={event} />
+            ))}
+          </div>
+        )}
       </Section>
 
       <Section>
