@@ -1,0 +1,29 @@
+[
+  {
+    "id": "resume-workshop",
+    "title": "Resume & Interview Workshop",
+    "description": "Join ThriveParth for a free interactive workshop focused on resume improvement, interview preparation, and career confidence building.",
+    "date": "2026-06-14",
+    "time": "10:00 AM – 1:00 PM",
+    "location": "Community Hub — Downtown",
+    "image": "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&q=80&w=1200"
+  },
+  {
+    "id": "networking-circle",
+    "title": "Community Networking Circle",
+    "description": "An open gathering for newcomers and young professionals to connect, share experiences, and build supportive relationships.",
+    "date": "2026-07-10",
+    "time": "6:00 PM – 8:00 PM",
+    "location": "ThriveParth Community Space",
+    "image": "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=1200"
+  },
+  {
+    "id": "wellness-gathering",
+    "title": "Wellness & Connection Gathering",
+    "description": "A supportive group conversation focused on emotional wellness, belonging, and community care.",
+    "date": "2026-03-22",
+    "time": "2:00 PM – 4:00 PM",
+    "location": "Community Hub — Downtown",
+    "image": "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&q=80&w=1200"
+  }
+]
