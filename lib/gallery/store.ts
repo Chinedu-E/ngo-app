@@ -1,28 +1,27 @@
-import { promises as fs } from "fs";
-import path from "path";
+import { readJsonDocument, writeJsonDocument } from "@/lib/storage/json-store";
 import type { GalleryFolder } from "@/lib/gallery/types";
 
-const GALLERY_PATH = path.join(process.cwd(), "data", "gallery.json");
+const R2_KEY = "meta/gallery.json";
+const LOCAL_PATH = "data/gallery.json";
 
 export async function readFolders(): Promise<GalleryFolder[]> {
-  try {
-    const raw = await fs.readFile(GALLERY_PATH, "utf8");
-    const parsed = JSON.parse(raw) as GalleryFolder[];
-    if (!Array.isArray(parsed)) {
-      throw new Error("Invalid gallery data.");
-    }
-    return parsed;
-  } catch (error) {
-    if ((error as NodeJS.ErrnoException).code === "ENOENT") {
-      return [];
-    }
-    throw error;
+  const parsed = await readJsonDocument<GalleryFolder[]>({
+    r2Key: R2_KEY,
+    localPath: LOCAL_PATH,
+    fallback: [],
+  });
+  if (!Array.isArray(parsed)) {
+    throw new Error("Invalid gallery data.");
   }
+  return parsed;
 }
 
 export async function writeFolders(folders: GalleryFolder[]): Promise<void> {
-  await fs.mkdir(path.dirname(GALLERY_PATH), { recursive: true });
-  await fs.writeFile(GALLERY_PATH, `${JSON.stringify(folders, null, 2)}\n`, "utf8");
+  await writeJsonDocument({
+    r2Key: R2_KEY,
+    localPath: LOCAL_PATH,
+    data: folders,
+  });
 }
 
 export async function getFolders(): Promise<GalleryFolder[]> {

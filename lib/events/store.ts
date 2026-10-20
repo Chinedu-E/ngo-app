@@ -1,5 +1,3 @@
-import { promises as fs } from "fs";
-import path from "path";
 import {
   formatEventDate,
   isEventUpcoming,
@@ -9,8 +7,10 @@ import {
   torontoTodayIso,
 } from "@/lib/events/recurrence";
 import type { EventRecord, EventWithStatus } from "@/lib/events/types";
+import { readJsonDocument, writeJsonDocument } from "@/lib/storage/json-store";
 
-const EVENTS_PATH = path.join(process.cwd(), "data", "events.json");
+const R2_KEY = "meta/events.json";
+const LOCAL_PATH = "data/events.json";
 
 export { torontoTodayIso, formatEventDate, isEventUpcoming };
 
@@ -35,8 +35,11 @@ export function withEventStatus(event: EventRecord, now = new Date()): EventWith
 }
 
 export async function readEvents(): Promise<EventRecord[]> {
-  const raw = await fs.readFile(EVENTS_PATH, "utf8");
-  const parsed = JSON.parse(raw) as EventRecord[];
+  const parsed = await readJsonDocument<EventRecord[]>({
+    r2Key: R2_KEY,
+    localPath: LOCAL_PATH,
+    fallback: [],
+  });
   if (!Array.isArray(parsed)) {
     throw new Error("Invalid events data.");
   }
@@ -44,8 +47,11 @@ export async function readEvents(): Promise<EventRecord[]> {
 }
 
 export async function writeEvents(events: EventRecord[]): Promise<void> {
-  await fs.mkdir(path.dirname(EVENTS_PATH), { recursive: true });
-  await fs.writeFile(EVENTS_PATH, `${JSON.stringify(events, null, 2)}\n`, "utf8");
+  await writeJsonDocument({
+    r2Key: R2_KEY,
+    localPath: LOCAL_PATH,
+    data: events,
+  });
 }
 
 export async function getEventsWithStatus(now = new Date()): Promise<EventWithStatus[]> {

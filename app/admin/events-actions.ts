@@ -106,15 +106,24 @@ export async function createEventAction(
   const fields = parseEventFields(formData);
   if ("error" in fields) return fields;
 
-  const events = await readEvents();
-  const event: EventRecord = {
-    id: createUniqueId(fields.title, events),
-    ...fields,
-  };
-  events.push(event);
-  await writeEvents(events);
-  revalidateEvents();
-  return { ok: true };
+  try {
+    const events = await readEvents();
+    const event: EventRecord = {
+      id: createUniqueId(fields.title, events),
+      ...fields,
+    };
+    events.push(event);
+    await writeEvents(events);
+    revalidateEvents();
+    return { ok: true };
+  } catch (error) {
+    return {
+      error:
+        error instanceof Error
+          ? error.message
+          : "Could not save event. Check R2 credentials on the host.",
+    };
+  }
 }
 
 export async function updateEventAction(
@@ -133,14 +142,23 @@ export async function updateEventAction(
   const fields = parseEventFields(formData);
   if ("error" in fields) return fields;
 
-  const events = await readEvents();
-  const index = events.findIndex((event) => event.id === id);
-  if (index === -1) return { error: "Event not found." };
+  try {
+    const events = await readEvents();
+    const index = events.findIndex((event) => event.id === id);
+    if (index === -1) return { error: "Event not found." };
 
-  events[index] = { id, ...fields };
-  await writeEvents(events);
-  revalidateEvents();
-  return { ok: true };
+    events[index] = { id, ...fields };
+    await writeEvents(events);
+    revalidateEvents();
+    return { ok: true };
+  } catch (error) {
+    return {
+      error:
+        error instanceof Error
+          ? error.message
+          : "Could not save event. Check R2 credentials on the host.",
+    };
+  }
 }
 
 export async function deleteEventAction(formData: FormData): Promise<void> {

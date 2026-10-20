@@ -52,18 +52,27 @@ export async function createFolderAction(
     return { error: "Description must be 280 characters or fewer." };
   }
 
-  const folders = await readFolders();
-  const folder: GalleryFolder = {
-    id: createUniqueFolderId(title, folders),
-    title,
-    description,
-    photos: [],
-    createdAt: new Date().toISOString(),
-  };
-  folders.push(folder);
-  await writeFolders(folders);
-  revalidateGallery();
-  return { ok: true, folderId: folder.id };
+  try {
+    const folders = await readFolders();
+    const folder: GalleryFolder = {
+      id: createUniqueFolderId(title, folders),
+      title,
+      description,
+      photos: [],
+      createdAt: new Date().toISOString(),
+    };
+    folders.push(folder);
+    await writeFolders(folders);
+    revalidateGallery();
+    return { ok: true, folderId: folder.id };
+  } catch (error) {
+    return {
+      error:
+        error instanceof Error
+          ? error.message
+          : "Could not save folder. Check R2 credentials on the host.",
+    };
+  }
 }
 
 export async function updateFolderAction(
