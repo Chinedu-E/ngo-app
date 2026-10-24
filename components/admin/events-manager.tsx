@@ -148,7 +148,7 @@ export function EventsManager({ upcoming, past }: Props) {
         <div>
           <h1 className="font-serif text-2xl sm:text-3xl text-forest font-semibold">Events</h1>
           <p className="text-muted text-sm mt-1">
-            Create and edit events. Dates in the past appear under Past Events automatically.
+            Create and edit events. Use an image URL or upload a photo — one image per event. Dates in the past appear under Past Events automatically.
           </p>
         </div>
         <Button

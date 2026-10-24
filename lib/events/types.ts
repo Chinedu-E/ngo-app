@@ -30,7 +30,10 @@ export type EventRecord = {
   date: string;
   time: string;
   location: string;
+  /** Public image URL. External link, or the public URL of an uploaded file. */
   image: string;
+  /** R2 object key when `image` was uploaded. Omitted for external URLs. */
+  imageKey?: string;
   /** Omitted / missing on older records → treated as one-time */
   schedule?: EventSchedule;
 };
