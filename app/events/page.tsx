@@ -30,7 +30,7 @@ export default async function EventsPage() {
             No upcoming events right now. Check back soon or explore our past highlights below.
           </p>
         ) : (
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-8 items-start">
             {upcoming.map((event) => (
               <EventCard key={event.id} event={event} />
             ))}
@@ -40,7 +40,7 @@ export default async function EventsPage() {
 
       <Section>
         <SectionHeader eyebrow="Past Highlights" title="Events that brought our community together" />
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
           {past.map((event) => (
             <EventCard key={event.id} event={event} />
           ))}
